@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AHK CHESS — a polished browser-based two-player chess game."
+    />
+    <title>AHK CHESS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar" aria-label="Game header">
+        <div class="brand-wrap">
+          <div class="brand-mark">AHK</div>
+          <div class="brand-text">
+            <span class="brand-name">AHK CHESS</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button id="continueBtn" class="secondary-button" type="button">
+            Continue Game
+          </button>
+          <button id="newGameBtn" class="primary-button" type="button">
+            New Game
+          </button>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <aside class="side-panel left-panel">
+          <div class="player-panel black-panel" data-player="black">
+            <div class="player-header">
+              <span class="player-name">BLACK</span>
+              <span class="status-dot"></span>
+            </div>
+            <div class="player-timer" id="blackTimer" aria-live="polite">10:00</div>
+            <div class="captured-section">
+              <div class="captured-label">Captured by White</div>
+              <div class="captured-items" id="whiteCaptured" aria-live="polite"></div>
+            </div>
+          </div>
+        </aside>
+
+        <section class="board-section" aria-label="Chess board section">
+          <div class="board-wrap">
+            <div id="board" class="board" aria-label="Chess board" role="grid"></div>
+          </div>
+        </section>
+
+        <aside class="side-panel right-panel">
+          <div class="status-box" aria-live="polite">
+            <div id="statusText" class="status-text">White to Move</div>
+            <div id="statusDetail" class="status-detail"></div>
+          </div>
+
+          <div class="history-panel">
+            <div class="panel-header">Move History</div>
+            <ol id="moveList" class="move-list" aria-live="polite"></ol>
+          </div>
+
+          <div class="controls-panel">
+            <button id="undoBtn" class="control-button" type="button">Undo</button>
+            <button id="drawBtn" class="control-button" type="button">Draw</button>
+            <button id="resignBtn" class="control-button danger" type="button">Resign</button>
+          </div>
+        </aside>
+      </main>
+
+      <div class="bottom-player-row">
+        <div class="player-panel white-panel" data-player="white">
+          <div class="player-header">
+            <span class="player-name">WHITE</span>
+            <span class="status-dot"></span>
+          </div>
+          <div class="player-timer" id="whiteTimer" aria-live="polite">10:00</div>
+          <div class="captured-section">
+            <div class="captured-label">Captured by Black</div>
+            <div class="captured-items" id="blackCaptured" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="promotionModal" class="modal hidden" aria-modal="true" role="dialog" aria-labelledby="promotionTitle">
+      <div class="modal-card">
+        <h2 id="promotionTitle">Choose Promotion</h2>
+        <div class="promotion-options">
+          <button class="promotion-piece" data-piece="queen" type="button" aria-label="Promote to queen">♛</button>
+          <button class="promotion-piece" data-piece="rook" type="button" aria-label="Promote to rook">♜</button>
+          <button class="promotion-piece" data-piece="bishop" type="button" aria-label="Promote to bishop">♝</button>
+          <button class="promotion-piece" data-piece="knight" type="button" aria-label="Promote to knight">♞</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="gameOverModal" class="modal hidden" aria-modal="true" role="dialog" aria-labelledby="gameOverTitle">
+      <div class="modal-card game-over-card">
+        <div id="gameOverTitle" class="game-over-title">CHECKMATE</div>
+        <div id="gameOverText" class="game-over-text">White Wins</div>
+        <div class="game-over-actions">
+          <button id="modalNewGameBtn" class="primary-button" type="button">New Game</button>
+          <button id="modalCloseBtn" class="secondary-button" type="button">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
